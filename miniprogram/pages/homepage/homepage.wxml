@@ -1,0 +1,100 @@
+<!--pages/welcome/welcome.wxml-->
+<!-- <view class='search-bar'>
+  <image class='more' bindtap='getMoreFunc' wx:if="{{show}}" src='/images/more3.png'></image>
+</view> -->
+
+<view class="weui-search-bar">
+  <view class="weui-search-bar__form">
+    <view class="weui-search-bar__box" hidden="{{!inputShowed}}">
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" class="weui-search-bar__input" placeholder="搜索你想吃的食物" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+      <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+        <icon type="clear" size="14"></icon>
+      </view>
+    </view>
+    <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+      <icon class="weui-icon-search" type="search" size="14"></icon>
+      <view class="weui-search-bar__text">搜索问卷</view>
+    </label>
+    <navigator class='create-a-ques' hidden="{{inputShowed}}" url='./createType/createType'>创建</navigator>
+  </view>
+  <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+  <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="tapSearch">搜索</view>
+</view>
+
+<scroll-view class='ques-list'>
+  <view class='questionnaire' wx:for='{{questionnaires}}' wx:key='' data-qid='{{item.qid}}' bindtap='onTapQues'>
+    <view class='ques-info'>
+      <view class='title'>{{item.title}}</view>
+      <view class='status0' wx:if='{{item.status==0}}'><text> · </text>未发布</view>
+      <view class='status1' wx:if='{{item.status==1}}'><text> · </text>已发布</view>
+    </view>
+    <view class='ques-count'>
+      <view class='count'>{{item.count}}</view>
+      <view class='count-text'>答卷数量</view>
+    </view>
+  </view>
+  <view class='get-more-ques' bindtap='getMoreQues' wx:if='{{hasMore}}'>点击加载更多</view>
+  <view class='get-more-ques' wx:else>已经到底了哦</view>
+</scroll-view> 
+
+<view class='drawer-screen' data-status='0' wx:if='{{!hideDrawer}}' catchtap='setModalStatus'>
+  <view class='ques-options' data-status='1' catchtap='setModalStatus'>
+    <view class='drawer-title'>{{questionnaires[qid-1].title}}</view>
+    <view class='drawer-body'>
+      <view class='func'>
+        <view class='func-icon' bindtap='onEdit'>
+          <image class='icon' src='/images/edit.png'></image>
+        </view>
+        <view class='func-text'>编辑</view>
+      </view>
+      <view class='func' bindtap='release' wx:if='{{questionnaires[qid-1].status==0}}'>
+        <view class='func-icon'>
+          <image class='icon' src='/images/release.png'></image>
+        </view>
+        <view class='func-text'>发布</view>
+      </view>
+      <view class='func' bindtap='pause' wx:else>
+        <view class='func-icon'>
+          <image class='icon' src='/images/pause.png'></image>
+        </view>
+        <view class='func-text'>暂停</view>
+      </view>
+      <view class='func'>
+        <view class='func-icon' bindtap='share'>
+          <image class='icon' src='/images/share.png'></image>
+        </view>
+        <view class='func-text'>分享</view>
+      </view>
+      <view class='func' bindtap='result'>
+        <view class='func-icon'>
+          <image class='icon' src='/images/result.png'></image>
+        </view>
+        <view class='func-text'>结果</view>
+      </view>
+      <view class='func'>
+        <view class='func-icon'>
+          <image class='icon' src='/images/luckyMoney.png'></image>
+        </view>
+        <view class='func-text'>红包</view>
+      </view>
+      <view class='func'>
+        <view class='func-icon'>
+          <image class='icon' src='/images/copy.png'></image>
+        </view>
+        <view class='func-text'>复制</view>
+      </view>
+      <view class='func'>
+        <view class='func-icon'>
+          <image class='icon' src='/images/delete.png'></image>
+        </view>
+        <view class='func-text'>删除</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+
+

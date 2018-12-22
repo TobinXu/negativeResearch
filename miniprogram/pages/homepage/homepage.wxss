@@ -1,0 +1,136 @@
+/* pages/welcome/welcome.wxss */
+/* .search-bar{
+  height: 80rpx;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1rpx solid #f3f4f6;
+  position: relative;
+}
+.more{
+  height: 50rpx;
+  width: 50rpx;
+  margin-top: 12rpx;
+  margin-left: 15rpx;
+} */
+.create-a-ques{
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 28px;
+  width: 60px;
+  line-height: 28px;
+  font-size: 14px;
+  background: #1E9FFA;
+  border-radius: 30rpx;
+  color: #fff;
+  text-align: center;
+}
+.ques-list{
+
+}
+  .questionnaire{
+    height: 150rpx;
+    width: 88%;
+    margin: 20rpx auto;
+    background: #fff;
+    padding: 10rpx 0 10rpx 30rpx;
+    border-radius: 16rpx;
+  }
+    .ques-info{
+      width: 78%;
+      border-right: 1px solid #F3F4F6;
+      float: left;
+      font-size: 24rpx;
+      margin-top: 16rpx;
+      height: 120rpx;
+    }
+      .ques-info text{
+        font-weight: 900;
+      }
+      .title{
+        font-size: 30rpx;
+        margin-top: 10rpx;
+        margin-bottom: 10rpx;
+      }
+      .status0{
+        color: #949494;
+      }
+      .status1{
+        color: #3CB301;       
+      }
+    .ques-count{
+      width: 21%;
+      float: left;
+      text-align: center;
+    }
+      .count{
+        margin-top: 30rpx;
+        margin-bottom: 10rpx;
+        color: #1E9FFA;
+        font-weight: 900;
+        font-size: 28rpx;
+      }
+      .count-text{
+        font-size: 22rpx;
+        color: #949494;
+      }
+  .get-more-ques{
+    text-align: center;
+    font-size: 24rpx;
+    margin-bottom: 50rpx;
+    color: #666;
+  }
+  
+.drawer-screen{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
+}
+
+.ques-options{
+  height: 500rpx;
+  width: 100%;
+  background: #F3F4F6;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+}
+  .drawer-title{
+    color: #444;
+    height: 60rpx;
+    text-align: center;
+    line-height: 60rpx;
+    font-size: 22rpx;
+    border-bottom: 1rpx #949494 solid;
+  }
+  .drawer-body{
+    height: 440rpx;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: center;
+    text-align: center;
+  }
+    .func{
+      height: 50%;
+      width: 25%;
+    }
+    .icon{
+      margin-top: 50rpx;
+      height: 60rpx;
+      width: 60rpx;
+    }
+    .func-text{
+      margin-top: 18rpx;
+      font-size: 26rpx;
+      color: #333;
+    }

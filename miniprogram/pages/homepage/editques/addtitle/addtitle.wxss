@@ -1,0 +1,31 @@
+/* pages/homepage/editques/addtitle/addtitle.wxss */
+.container {
+ padding: 0 20rpx;
+} 
+  .add-basic-title{
+    width: 100%;
+  }
+    .title-text{
+      font-size: 20rpx;
+      color: #a7a7a7;
+      line-height: 40rpx;
+    }
+    .title-type{
+      background: #fff;
+      border-radius: 10rpx;
+      padding: 18rpx;
+    }
+      .title-type-part{
+        float: left;
+        width: 25%;
+        text-align: center;
+      }
+        .part-img{
+          height: 40rpx;
+          width: 40rpx;
+        }
+        .part-text{
+          font-size: 22rpx;
+          color: #949494;
+          margin-top: -9rpx;
+        }

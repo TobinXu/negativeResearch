@@ -1,0 +1,12 @@
+/**app.wxss**/
+@import 'style/weui.wxss';
+
+page{
+  background-color: #F3F4F6;
+}
+.clearfix::after{
+  clear: both;
+  content: '';
+  display: block;
+  /* visibility: hidden; */
+}

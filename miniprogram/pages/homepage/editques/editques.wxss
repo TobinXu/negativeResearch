@@ -1,0 +1,104 @@
+/* pages/homepage/editques/editques.wxss */
+.ques-head{
+  background: #fff;
+}
+  .ques-head-title{
+    font-size: 34rpx;
+    font-weight: 900;
+    margin-left: 20rpx;
+    padding-top: 10rpx;
+  }
+  .desc{
+    font-size: 24rpx;
+    padding: 14rpx 20rpx 24rpx 20rpx;
+  }
+  .edit-head-title{
+    border-top: 1rpx solid rgb(227, 227, 227);
+    height: 90rpx;
+    width: 100%;
+    background: rgb(250, 251, 255);
+    color: #949494;
+    font-size: 20rpx;
+    text-align: center;
+  }
+    .edit-title-img{
+      height: 40rpx;
+      width: 40rpx;
+      margin-top: 10rpx;
+    }
+    .edit-title-text{
+      margin-top: -10rpx;
+    }
+
+.title{
+  background: #fff;
+  margin-top: 20rpx;
+}
+.padding{
+  padding: 20rpx 30rpx;
+}
+  .title-head{
+    font-size: 28rpx;
+
+  }
+  .title-body{
+    padding-left: 20rpx;
+    line-height: 40rpx;
+    font-size: 26rpx;
+  }
+    .circle{
+      border: 1rpx solid #949494;
+      height: 20rpx;
+      width: 20rpx;
+      border-radius: 50%;
+      margin-top: 2rpx;
+    }
+  .change-title{
+    border-top: 1rpx solid rgb(227, 227, 227);
+    height: 90rpx;
+    width: 100%;
+    background: rgb(250, 251, 255);
+    color: #949494;
+    font-size: 20rpx;
+    text-align: center;
+  }
+    .part{
+      width: 25%;
+      float: left;
+    }
+      .change-title-img{
+        height: 40rpx;
+        width: 40rpx;
+        margin-top: 10rpx;
+      }
+.add-title{
+  height: 60rpx;
+  width: 80%;
+  margin: 50rpx auto;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 24rpx;
+  background: #fff;
+  border: 1rpx dotted rgb(227, 227, 227);
+}
+
+
+.bottom-bar{
+  height: 100rpx;
+  width: 100%;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+  .bottom-bar-part{
+    text-align: center;
+    font-size: 22rpx;
+    float: left;
+    width: 25%;
+  }
+    .bottom-bar-image{
+      height: 50rpx;
+      width: 50rpx;
+      margin-top: 6rpx;
+    }

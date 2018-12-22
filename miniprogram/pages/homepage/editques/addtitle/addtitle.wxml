@@ -1,0 +1,30 @@
+<!--pages/homepage/editques/addtitle/addtitle.wxml-->
+<view class='container'>
+  <view class='add-basic-title'>
+    <view class='title-text'>添加基础题型</view>
+    <view class='title-type clearfix'>
+      <view class='title-type-part' wx:for='{{basic_title}}' wx:key='' id='{{index}}' bindtap='navg'>
+        <image class='part-img' src='/images/{{item.url}}'></image>
+        <view class='part-text'>{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='add-basic-title'>
+    <view class='title-text'>添加题目模板</view>
+    <view class='title-type clearfix'>
+      <view id='{{index}}' class='title-type-part' wx:for='{{title_templet}}' wx:key='' bindtap='navg'>
+        <image class='part-img' src='/images/{{item.url}}'></image>
+        <view class='part-text'>{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='add-basic-title'>
+    <view class='title-text'>批量添加题目</view>
+    <view class='title-type clearfix'>
+      <view id='{{index}}' class='title-type-part' wx:for='{{add_titles}}' wx:key='' bindtap='navg'>
+        <image class='part-img' src='/images/{{item.url}}'></image>
+        <view class='part-text'>{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,77 @@
+<!--pages/homepage/editques/editques.wxml-->
+<view class='ques-head' style='{{onEditTitle?"border:1rpx dotted cornflowerblue" : ""}}' bindtap='onEditTitle'>
+  <view class='ques-head-title'>{{ques.title}}</view>
+  <view class='desc'>{{ques.desc}}</view>
+  <view class='edit-head-title' wx:if='{{onEditTitle}}' catchtap='editTitle'>
+    <image class='edit-title-img' src='/images/editTitle.png'></image>
+    <view class='edit-title-text'>编辑</view>
+  </view>
+</view>
+
+<view class='ques-body'>
+
+  <view data-tid='{{item.tid}}' class='title' wx:for='{{titles}}' wx:key='{{item.tid}}'
+    bindtap='onChangetitle'>
+    <view class='padding'>
+      <view class='title-head'>
+        <text wx:if='{{item.mustBeAnswer}}' style='color:red'>*</text>
+        <text style='font-weight:900'>{{item.tid}}</text>.<text>{{item.title}}：</text>
+      </view>
+
+      <view class='title-body'>
+        <view class='answer'  wx:for='{{item.answer}}' wx:key='' wx:for-item='answer'>
+          <image class='circle'></image>
+          {{answer.name}}
+        </view>
+      </view> 
+    </view>
+    
+    <view class='change-title' wx:if='{{item.onChange}}' >
+      <view class='part' catchtap='changetitle'>
+        <image class='change-title-img' src='/images/editTitle.png'></image>
+        <view class='edit-title-text'>编辑</view>
+      </view>
+      <view class='part' catchtap='uptitle' data-tid='{{item.tid}}'>
+        <image class='change-title-img' src='/images/upTitle.png'></image>
+        <view class='edit-title-text'>上移</view>
+      </view>
+      <view class='part' catchtap='downtitle' data-tid='{{item.tid}}'>
+        <image class='change-title-img' src='/images/downTitle.png'></image>
+        <view class='edit-title-text'>下移</view>    
+      </view>
+      <view class='part' catchtap='deletetitle' data-tid='{{item.tid}}'>
+        <image class='change-title-img' src='/images/deleteTitle.png'></image>
+        <view class='edit-title-text'>删除</view>    
+      </view>
+    </view>  
+  </view>
+
+  <view class='add-title' bindtap='onAddtitle'>添加题目</view>
+</view>
+
+<view class='bottom-bar'>
+  <view class='bottom-bar-part' bindtap='onAddtitle'>
+    <image src='/images/add.png' class='bottom-bar-image'></image>
+    <view>题目</view>
+  </view>
+  <view class='bottom-bar-part' bindtap='onSetting'>
+    <image src='/images/setting.png' class='bottom-bar-image'></image>
+    <view>设置</view>
+  </view>
+  <view class='bottom-bar-part' bindtap='onPreview'>
+    <image src='/images/preview.png' class='bottom-bar-image'></image>
+    <view>预览</view>
+  </view>
+  <view class='bottom-bar-part' bindtap='onSave'>
+    <image src='/images/save.png' class='bottom-bar-image'></image>
+    <view>保存</view>
+  </view>
+</view>
+
+
+    <!-- <radio-group class='title-body' wx:for='{{item.answer}}' wx:key='' wx:for-item='answer'
+      bindchange="radioChange">
+      <radio class='answer' value="{{answer.name}}" checked="{{answer.checked}}">
+        {{answer.name}}
+      </radio>
+    </radio-group>  -->
