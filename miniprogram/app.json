@@ -1,15 +1,17 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/homepage/homepage",
+    "pages/homepage/searchResult/searchResult",
+    "pages/homepage/share/share",
     "pages/homepage/createType/createType",
     "pages/homepage/editques/editques",
     "pages/homepage/editques/editTitle/editTitle",
     "pages/homepage/editques/edittitles/edittitles",
     "pages/homepage/editques/addtitle/addtitle",
     "pages/homepage/editques/addtitle/addtitleDetail/addtitleDetail",
-    "pages/homepage/share/share",
-    "pages/welcome/welcome"
-
+    "pages/resultChart/resultChart",
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -17,5 +19,15 @@
     "navigationBarBackgroundColor": "#Fff",
     "navigationBarTitleText": "负问卷",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "usingComponents": {
+    "van-checkbox": "miniprogram_npm/vant-weapp/checkbox/index",
+    "van-checkbox-group": "miniprogram_npm/vant-weapp/checkbox-group/index",
+    "van-field": "miniprogram_npm/vant-weapp/field/index",
+    "van-popup": "miniprogram_npm/vant-weapp/popup/index",
+    "van-button": "miniprogram_npm/vant-weapp/button/index",
+    "van-row": "miniprogram_npm/vant-weapp/row/index",
+    "van-col": "miniprogram_npm/vant-weapp/col/index"
+  },
+  "sitemapLocation": "sitemap.json"
 }

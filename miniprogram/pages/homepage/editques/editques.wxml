@@ -9,47 +9,50 @@
 </view>
 
 <view class='ques-body'>
-
-  <view data-tid='{{item.tid}}' class='title' wx:for='{{titles}}' wx:key='{{item.tid}}'
-    bindtap='onChangetitle'>
+  <view class='title' wx:for='{{ques.quesList}}' wx:for-index='qindex' wx:key='{{item.tid}}' bindtap='onChangetitle' data-index='{{qindex}}'>
     <view class='padding'>
       <view class='title-head'>
-        <text wx:if='{{item.mustBeAnswer}}' style='color:red'>*</text>
-        <text style='font-weight:900'>{{item.tid}}</text>.<text>{{item.title}}：</text>
+        <text wx:if='{{item.necessity}}' style='color:red'>*</text>
+        <text style='font-weight:900'>{{qindex + 1}}</text>.
+        <text class='title-content'>{{item.ques}}：</text>
       </view>
-
       <view class='title-body'>
-        <view class='answer'  wx:for='{{item.answer}}' wx:key='' wx:for-item='answer'>
-          <image class='circle'></image>
-          {{answer.name}}
+        <view wx:if="{{item.typeId == 2 }}">
+          <view class='textarea'></view>
         </view>
-      </view> 
+        <view class='answer' wx:for='{{item.options}}' wx:key='' wx:for-item='option'>
+          <image class='circle'></image>
+          {{option.content}}
+        </view>
+      </view>
     </view>
-    
-    <view class='change-title' wx:if='{{item.onChange}}' >
+
+
+    <view class='change-title' wx:if='{{qindex === index}}'>
       <view class='part' catchtap='changetitle'>
         <image class='change-title-img' src='/images/editTitle.png'></image>
         <view class='edit-title-text'>编辑</view>
       </view>
-      <view class='part' catchtap='uptitle' data-tid='{{item.tid}}'>
+      <view class='part' catchtap='uptitle' wx:if='{{qindex !== 0}}'>
         <image class='change-title-img' src='/images/upTitle.png'></image>
         <view class='edit-title-text'>上移</view>
       </view>
-      <view class='part' catchtap='downtitle' data-tid='{{item.tid}}'>
+      <view class='part' catchtap='downtitle' wx:if='{{qindex !== ques.quesList.length - 1}}'>
         <image class='change-title-img' src='/images/downTitle.png'></image>
-        <view class='edit-title-text'>下移</view>    
+        <view class='edit-title-text'>下移</view>
       </view>
-      <view class='part' catchtap='deletetitle' data-tid='{{item.tid}}'>
+      <view class='part' catchtap='deletetitle'>
         <image class='change-title-img' src='/images/deleteTitle.png'></image>
-        <view class='edit-title-text'>删除</view>    
+        <view class='edit-title-text'>删除</view>
       </view>
-    </view>  
+    </view>
   </view>
 
   <view class='add-title' bindtap='onAddtitle'>添加题目</view>
 </view>
 
-<view class='bottom-bar'>
+
+<!-- <view class='bottom-bar'>
   <view class='bottom-bar-part' bindtap='onAddtitle'>
     <image src='/images/add.png' class='bottom-bar-image'></image>
     <view>题目</view>
@@ -66,12 +69,4 @@
     <image src='/images/save.png' class='bottom-bar-image'></image>
     <view>保存</view>
   </view>
-</view>
-
-
-    <!-- <radio-group class='title-body' wx:for='{{item.answer}}' wx:key='' wx:for-item='answer'
-      bindchange="radioChange">
-      <radio class='answer' value="{{answer.name}}" checked="{{answer.checked}}">
-        {{answer.name}}
-      </radio>
-    </radio-group>  -->
+</view> -->

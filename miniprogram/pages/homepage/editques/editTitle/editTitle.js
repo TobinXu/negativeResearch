@@ -1,36 +1,21 @@
 // pages/homepage/editTitle/editTitle.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    inputTitle: null,
-    inputDesc: null,
-    qid: null,
-    ques: null
+    ques: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.setData({
-      qid: options.qid
-    })
-    const db = wx.cloud.database()
-    db.collection('questionnaires').where({
-      qid: Number(options.qid)
-    }).get({
-      success: res => {
-        console.log("问卷标题内容：",res.data[0])
-        this.setData({
-          ques: res.data[0],
-          inputTitle: res.data[0].title,
-          inputDesc: res.data[0].desc
-        })
-      }
-    })
+   this.setData({
+    ques: app.globalData.quesList[app.globalData.ques_index]
+   })
   },
 
   /**
@@ -39,22 +24,7 @@ Page({
   onInputTitle: function(e) {
     const value = e.detail.value
     this.setData({
-      inputTitle: value
-    })
-  },
-
-  /**
-   * 获取云函数getQuesList
-   */
-  getQues: function() {
-    wx.cloud.init({
-      traceUser: true
-    })
-    wx.cloud.callFunction({
-      name: "getQuesList",
-      complete: res => {
-        console.log('云函数返回数据：', res)
-      }
+      'ques.title': value
     })
   },
 
@@ -64,7 +34,7 @@ Page({
   onInputDesc: function(e) {
     const value = e.detail.value
     this.setData({
-      inputDesc: value
+      'ques.desc': value
     })
   },
 
@@ -72,7 +42,7 @@ Page({
    * 确定修改问卷内容
    */
   submit: function() {
-    if (!this.data.inputTitle) {
+    if (!this.data.ques.title) {
       wx.showToast({
         icon: 'none',
         title: '标题不能为空'
@@ -85,13 +55,13 @@ Page({
     db.collection('questionnaires').doc(this.data.ques._id)
     .update({
       data: {
-        title: this.data.inputTitle,
-        desc: this.data.inputDesc
+        title: this.data.ques.title,
+        desc: this.data.ques.desc
       },
       success: res => {
         console.log("问卷修改成功：",res)
-        wx.redirectTo({
-          url: '../editques?qid=' + this.data.qid,
+        wx.navigateBack({
+          url: '../editques',
         })
       },
       fail: console.error

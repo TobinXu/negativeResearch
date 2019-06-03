@@ -10,3 +10,6 @@ page{
   display: block;
   /* visibility: hidden; */
 }
+text{
+  word-break:break-all;
+}

@@ -1,0 +1,20 @@
+<view class='headTitle'>{{ques.title}}</view>
+<view wx:for="{{ques.quesList}}" wx:key="{{item.tid}}" wx:for-index='qindex'>
+  <view id='{{index}}' bindtap='onSelectedtitle'>
+    <view class='padding'>
+      <view class='title-head'>
+        <text wx:if='{{item.necessity}}' style='color:red'>*</text>
+        <text style='font-weight:900'>{{qindex + 1}}</text>.
+        <text>{{content[quesType]}}{{item.ques}}：</text>
+      </view>
+      <view class='title-body'>
+        <view class="{{option.selected?'answerSelected':'answer'}}" wx:for='{{item.options}}' wx:key='' wx:for-item='option' wx:for-index='number' data-aid='{{number}}'>
+          {{name_list[number]}} {{option.content}}
+        </view>
+      </view>
+    </view>
+    <view class="container">
+      <canvas canvas-id="lineCanvas{{qindex}}" class="canvas" bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend="touchend"></canvas>
+    </view>
+  </view>
+</view>

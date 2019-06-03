@@ -1,53 +1,21 @@
 // pages/homepage/editques/addtitle/addtitle.js
 const basic_title = [
   {
-    name:"单选题",
-    url:"singleChoice.png"
+    name: "单选题",
+    url: "singleChoice.png"
   },
   {
-    name:"多选题",
-    url:"multipleChoice.png"
+    name: "多选题",
+    url: "multipleChoice.png"
   },
   {
-    name:"填空题",
-    url:"fillInTheBlank.png"
+    name: "填空题",
+    url: "fillInTheBlank.png"
   },
   {
-    name:"排序题",
-    url:"sort.png"
+    name: "排序题",
+    url: "sort.png"
   },
-]
-const title_templet = [
-  {
-    name:"姓名",
-    url:"singleChoice.png"
-  },
-  {
-    name:"性别",
-    url:"multipleChoice.png"
-  },
-  {
-    name:"手机",
-    url:"fillInTheBlank.png"
-  },
-  {
-    name:"日期",
-    url:"sort.png"
-  },
-]
-const add_titles = [
-  {
-    name:"题库选题",
-    url:"singleChoice.png"
-  },
-  {
-    name:"图片添题",
-    url:"multipleChoice.png"
-  },
-  {
-    name:"文本导入",
-    url:"fillInTheBlank.png"
-  }
 ]
 
 Page({
@@ -56,18 +24,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    basic_title: basic_title,
-    title_templet: title_templet,
-    add_titles: add_titles
+    basic_title: basic_title,//数组  即一个列表  存放名称和图标的路径  用于html中的循环显示
+    qid: 0,//问卷id
+    _id: ''
   },
 
   /**
    * 跳转到添加题目详情页面
    */
   navg: function (e) {
-    const type = e.currentTarget.id
+    // 0 单选  1 多选  2填空
+    console.log(e)
+    // 类型名称
+    const type = e._relatedInfo.anchorRelatedText
+    // 类型名称对应的id
+    const typeId = e.currentTarget.id
     wx.navigateTo({
-      url: './addtitleDetail/addtitleDetail?type='+ type,
+      url: './addtitleDetail/addtitleDetail?type=' + type +'&typeId='+typeId+ '&qid=' + this.data.qid,
     })
   },
 
@@ -75,55 +48,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    this.setData({
+      qid: options.qid,
+      // _id: options._id
+    })
   }
 })

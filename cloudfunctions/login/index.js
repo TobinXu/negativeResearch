@@ -4,6 +4,7 @@
 const cloud = require('wx-server-sdk')
 
 // 初始化 cloud
+// cloud.init({env:'infor-safety--27caa2'})
 cloud.init()
 
 /**

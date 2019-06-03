@@ -1,30 +1,20 @@
 // pages/homepage/createType/createType.js
+const getDateDiff = require('../../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    inputTitle: null,
-    inputDesc: null,
-    qcount: null
+    inputTitle: '',//用户输入的标题
+    inputDesc: '',//用户输入的说明
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 生命周期函数--监听页面加载 获取qcount的初始值
    */
   onLoad: function(options) {
-
-    const db = wx.cloud.database()
-    db.collection('questionnaires').count({
-      success: res => {
-        console.log("问卷总数：", res.total)
-        this.setData({
-          qcount: res.total
-        })
-      },
-      fail: console.error
-    })
+   
   },
 
   /**
@@ -37,22 +27,7 @@ Page({
     })
   },
 
-  /**
-   * 获取云函数getQuesList
-   */
-  getQues: function() {
-    wx.cloud.init({
-      traceUser: true
-    })
-    wx.cloud.callFunction({
-      name: "getQuesList",
-      complete: res => {
-        console.log('云函数返回数据：', res)
-      }
-    })
-  },
-
-  /**
+   /**
    * 用户输入说明时
    */
   onInputDesc: function(e) {
@@ -80,67 +55,17 @@ Page({
       data: {
         title: this.data.inputTitle,
         desc: this.data.inputDesc,
-        qid: this.data.qcount + 1,
-        status: 0,
-        count: 0
+        qid: db.serverDate(),
+        status: 0, // 问卷状态 0 未发布 1 已发布 
+        count: 0, // 问卷填写数量
+        quesList: [] // 问卷题目保存列表
       },
       success: res => {
-        console.log("问卷创建成功")
-        const qcount = this.data.qcount + 1
-        wx.redirectTo({
-          url: '../editques/editques?qid=' + qcount,
+        wx.navigateBack({
+          delta: 1
         })
       },
       fail: console.error
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
   }
 })

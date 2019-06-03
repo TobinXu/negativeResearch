@@ -1,2 +1,26 @@
-<!--pages/homepage/share/share.wxml-->
-<text>pages/homepage/share/share.wxml</text>
+<view class='headTitle'>{{ques.title}}</view>
+<view class='top-button'>
+  <button bindtap="changeType" plain='true' class="{{quesType === 0?'active': ''}}" data-id='0'>传统问卷</button>
+  <button bindtap="changeType" plain='true' class="{{quesType === 1?'active': ''}}" data-id='1'>负问卷</button>
+</view>
+<view wx:for='{{ques.quesList}}' wx:key="{{item.tid}}" wx:for-index='qindex'>
+  <view data-index='{{qindex}}'>
+    <view class='padding'>
+      <view class='title-head'>
+        <text wx:if='{{item.necessity}}' style='color:red'>*</text>
+        <text style='font-weight:900'>{{qindex + 1}}</text>.
+        <text>{{content[quesType]}}{{item.ques}}：</text>
+      </view>
+      <view class='title-body'>
+        <view class="{{option.selected?'answerSelected':'answer'}}" wx:for='{{item.options}}' wx:key='' wx:for-item='option'>
+          <image class='circle'></image>
+          {{option.content}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<button class='submit' open-type='share'>
+  分享
+</button>

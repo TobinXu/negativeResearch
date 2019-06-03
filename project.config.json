@@ -6,11 +6,18 @@
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"nodeModules": true,
+		"autoAudits": true,
+		"uglifyFileName": true,
+		"checkInvalidKey": true
 	},
-	"appid": "wx756e1a33c8b78f79",
+	"appid": "wx0590ba58cf636c35",
 	"projectname": "%E8%B4%9F%E9%97%AE%E5%8D%B7",
-	"libVersion": "2.4.2",
+	"libVersion": "2.6.2",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,

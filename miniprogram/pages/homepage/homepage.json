@@ -1,3 +1,8 @@
 {
-  "navigationBarTitleText": "我的问卷"
+  "navigationBarTitleText": "我的问卷",
+  "usingComponents": {
+    "w-loading": "wuss-weapp/w-loading/index",
+    "w-indicator": "wuss-weapp/w-activity-indicator/index",
+    "w-pane": "wuss-weapp/w-pane/index"
+  }
 }

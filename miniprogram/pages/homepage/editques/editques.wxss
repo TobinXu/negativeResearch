@@ -39,13 +39,22 @@
 }
   .title-head{
     font-size: 28rpx;
-
   }
+
   .title-body{
-    padding-left: 20rpx;
     line-height: 40rpx;
     font-size: 26rpx;
   }
+    .textarea{
+      height: 60rpx;
+      width: 90%;
+      margin: 30rpx auto 10rpx auto;
+      border: 1rpx solid rgb(227, 227, 227);
+      border-radius: 6rpx;
+    }
+    .answer{
+      padding-left: 20rpx;
+    }
     .circle{
       border: 1rpx solid #949494;
       height: 20rpx;
@@ -54,8 +63,10 @@
       margin-top: 2rpx;
     }
   .change-title{
+    display:flex;
+    justify-content: space-around;
     border-top: 1rpx solid rgb(227, 227, 227);
-    height: 90rpx;
+    height: 80rpx;
     width: 100%;
     background: rgb(250, 251, 255);
     color: #949494;
@@ -74,12 +85,18 @@
 .add-title{
   height: 60rpx;
   width: 80%;
-  margin: 50rpx auto;
+  margin: 50rpx auto 150rpx auto;
   line-height: 60rpx;
   text-align: center;
   font-size: 24rpx;
   background: #fff;
   border: 1rpx dotted rgb(227, 227, 227);
+}
+.add-title{
+
+  margin: 50rpx auto 150rpx auto;
+  background: #fff;
+
 }
 
 

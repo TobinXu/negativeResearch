@@ -1,9 +1,9 @@
 <!--pages/homepage/editTitle/editTitle.wxml-->
 <view class='line'></view>
 <view class='head'><text style='color:red'>*</text> 问卷标题</view>
-<textarea class='body' style='height:100rpx;' placeholder='请输入标题' value='{{inputTitle}}' bindinput='onInputTitle'></textarea>
+<textarea class='body' style='height:100rpx;' placeholder='请输入标题' value='{{ques.title}}' bindinput='onInputTitle'></textarea>
 <view class='head'>问卷说明</view>
-<textarea class='body' placeholder='请输入说明' value='{{inputDesc}}' bindinput='onInputDesc'></textarea>
+<textarea class='body' placeholder='请输入说明' value='{{ques.desc}}' bindinput='onInputDesc'></textarea>
 
 <view class='submit' bindtap='submit'>确定</view>
 

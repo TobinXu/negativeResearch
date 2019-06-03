@@ -1,2 +1,32 @@
-<!--pages/homepage/editques/edittitles/edittitles.wxml-->
-<text>pages/homepage/editques/edittitles/edittitles.wxml</text>
+<!-- pages/homepage/editques/edittitles/edittitles.wxml-->
+<view class='single-choice-title'>
+  <view class='head'><text style='color:red'>*</text> 标题</view>
+  <textarea class='body' style='height:100rpx;' placeholder='请输入标题' value='{{ques.ques}}' bindinput='onInputTitle'></textarea>
+</view>
+<view class='options'>
+  <view class='head bgcolor'>选项</view>
+  <view wx:for='{{ques.options}}' wx:key='' class='input-options width'>
+    <image class='remove-options' data-index='{{index}}' src='/images/removeOptions.png' bindtap='removeOptions'></image>
+    <input id='{{index}}' class='input-text' placeholder='输入选项' value='{{ques.options[index].content}}' bindinput='onInputContent'></input>
+  </view>
+  <view class='add-options width' bindtap='addOptions'>
+    <image class='remove-options' src='/images/addOptions.png'></image>
+    <text class='add-text'>添加选项</text>
+  </view>
+</view>
+
+<view class='head bgcolor'>设置</view>
+<view class='setting'>
+  <text>此问题为必答</text>
+  <view class='w-cell'>
+    <w-cell label="Default">
+      <w-switch
+      slot="content"
+      value="{{ ques.necessity }}"
+      bind:onChange="handleChange"
+      />
+    </w-cell>
+  </view>
+</view>
+
+<button class='weui-btn submit' type='primary' bindtap='submit'>确认</button>

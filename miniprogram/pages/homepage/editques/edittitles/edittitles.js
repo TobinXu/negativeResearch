@@ -1,66 +1,114 @@
-// pages/homepage/editques/edittitles/edittitles.js
+// pages/homepage/editques/addtitle/addtitleDetail/addtitleDetail.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
-  data: {
+   data: {
+    ques: {}
+  },
 
+  onLoad: function(options) {
+    this.setData({ ques: app.globalData.quesList[app.globalData.ques_index].quesList[options.index]})
+  },
+  /**
+   * 添加选项
+   */
+   addOptions: function() {
+    if (this.data.ques.options.length > 5) {
+     wx.showToast({
+      title: '选项数量不能超过6',
+      duration: 2000,
+      mask: true,
+      icon: 'none',  
+    })
+     return
+   }
+   this.data.ques.options.push({content: '', selected: false})
+   this.setData({
+    'ques.options': this.data.ques.options
+  })
+ },
+
+  /**
+   * 输入标题
+   */
+   onInputTitle: function(e) {
+    this.setData({
+      'ques.ques': e.detail.value
+    })
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 输入内容
    */
-  onLoad: function (options) {
-
+   onInputContent: function(e) {
+    const id = e.currentTarget.id
+    this.setData({
+      ['ques.options['+id+'].content']: e.detail.value
+    })
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 删除选项
    */
-  onReady: function () {
-
+   removeOptions: function(e) {
+    if(this.data.ques.options.length < 3) {
+      wx.showToast({
+        title: '选项数量不能少于1',
+        duration: 2000,
+        mask: true,
+        icon: 'none', 
+      })
+      return 
+    }
+    this.data.ques.options.splice(e.currentTarget.dataset.index, 1)
+    this.setData({
+      'ques.options': this.data.ques.options
+    })
   },
 
   /**
-   * 生命周期函数--监听页面显示
+   * 是否为必答题
    */
-  onShow: function () {
-
+   handleChange: function (e) {
+    const checked = e.detail.value
+    this.setData({
+      'ques.necessity': checked ? 1 : 0
+    })
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
+   * 完成编辑选题
    */
-  onHide: function () {
-
+   submit: function() {
+    if(!this.checkValid()) {
+      wx.showToast({
+       title: '请完成问卷题目',
+       duration: 2000,
+       // mask: true,
+       icon: 'none', 
+     })
+      return
+    }
+    const db = wx.cloud.database()
+    db.collection('questionnaires').doc(app.globalData.quesList[app.globalData.ques_index]._id).update({
+      data: {
+        quesList: app.globalData.quesList[app.globalData.ques_index].quesList
+      },
+      success: res => {
+        wx.navigateBack({})
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  checkValid: function () {
+    let options = this.data.ques.options
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].content === '') {
+        return false
+      }
+    }
+    return true
   }
 })

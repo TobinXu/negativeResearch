@@ -1,0 +1,12 @@
+<view class='authority shadow-warp' wx:if="{{!showLoading}}">
+ <!--  <view class="cu-avatar lg round margin-left" style="background-image:url(http://img0.ph.126.net/xU2zqpWbmMYODBRYeRZEJw==/1834372423323563766.jpg);"></view> -->
+
+  <wux-button block type="balanced" openType="getUserInfo" bind:getuserinfo="getUserInfo" disabled='{{showLoading}}'> {{showLoading?'已授权':'授权微信小程序'}}</wux-button>
+</view>
+
+
+<view class="flex" style='margin-top:400rpx;' wx:if="{{showLoading}}">
+  <view class='flex-sub radius'>
+    <image src='/images/loading-white.gif' mode='aspectFit' class='gif-white response' style='height:240rpx;width:100%'></image>
+  </view>
+</view>

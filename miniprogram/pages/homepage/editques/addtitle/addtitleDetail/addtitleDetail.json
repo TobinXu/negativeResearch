@@ -1,1 +1,6 @@
-{}
+{
+  "navigationBarTitleText": "编辑问卷",
+  "usingComponents": {
+    "w-switch": "wuss-weapp/w-switch/index"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "授权登陆",
+  "usingComponents": {
+    "wux-button": "/miniprogram_npm/vant-weapp/button/index"
+  }
+}

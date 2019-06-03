@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "编辑问卷"
+  "navigationBarTitleText": "编辑问卷",
+  "usingComponents": {
+    "w-button": "wuss-weapp/w-button/index"
+  }
 }

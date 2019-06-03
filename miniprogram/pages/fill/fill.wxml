@@ -1,0 +1,35 @@
+
+<view class='goods-detail-m' wx:if='{{quesType === null}}'>
+  <view class="mask-m"></view>
+  <view class="goodsdetail-m">
+    <view class='goodsdetail-m-title'>请选择一种问卷填写</view>
+    <view class='goodsdetail-m-body'>
+      <view class='goodsdetail-m-body-left' bindtap='setNega'>负问卷</view>
+      <view class='goodsdetail-m-body-right' bindtap='setPosi'>传统问卷</view>
+    </view>
+  </view>
+</view>
+
+<view class='headTitle'>{{ques.title}}</view>
+<view wx:for='{{ques.quesList}}' wx:key="{{item.tid}}" wx:for-index='qindex'>
+  <view>
+    <view class='padding'>
+      <view class='title-head'>
+        <text wx:if='{{item.necessity}}' style='color:red'>*</text>
+        <text style='font-weight:900'>{{qindex + 1}}</text>.
+        <text>{{content[quesType]}}{{item.ques}}：</text>
+      </view>
+      <view class='title-body'>
+        <view class="{{result[qindex] === number?'answerSelected':'answer'}}" data-index='{{qindex}}' wx:for='{{item.options}}' wx:key='{{qindex}}' wx:for-item='option' wx:for-index='number' data-aid='{{number}}' bindtap='onSelectedtitle'>
+          <image src='/images/SCselected.png' class='SCselected' wx:if='{{result[qindex] === number}}'></image>
+          <image class='circle' wx:else></image>
+          {{option.content}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<button class='submit' bindtap='submit'>
+  提交
+</button>
