@@ -13,7 +13,6 @@ Page({
     this.setData({
       ques: app.globalData.quesList[app.globalData.ques_index],
     })
-    // console.log(this.data)
     if (this.data.ques === 0) {
       wx.showModal({
         title: '系统提示',
@@ -26,7 +25,6 @@ Page({
   },
   
   changeType: function(e) {
-    console.log(e)
     if (e.currentTarget.dataset.id === '1') {
       this.setData({
         quesType: 1
@@ -40,14 +38,12 @@ Page({
    * 选中某个单选题
    */
   onSelectedtitle: function (e) {
-    // console.log(e)
     const index = e.currentTarget.dataset.index // 题目的id
     const aid = e.target.dataset.aid // 题目答案的id
     if(aid == null) return
     let arr = this.data.result
     arr[index] = aid
     let ques = this.data.ques.quesList
-    // console.log(ques)
     for (let i = 0; i < ques[index].options.length; i++) {
       if (ques[index].options[i].selected) {
         ques[index].options[i].selected = false

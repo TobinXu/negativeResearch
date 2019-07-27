@@ -34,6 +34,18 @@ page {
   top: 0;
   z-index: 10;
 }
+.top-button button {
+  display: inline-block;
+  width: 50%;
+  border: 0;
+  font-size: 26rpx;
+}
+
+.active {
+  font-weight: bold;
+  color: #387ef5;
+}
+
 
 .mymain {
   position: absolute;

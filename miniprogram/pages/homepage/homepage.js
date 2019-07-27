@@ -15,7 +15,8 @@ Page({
     wxSearchData: {
       value: "",
       onSearch: false
-    }
+    },
+    ques_transcript: []
   },
 
   onLoad: function(options) {
@@ -30,7 +31,9 @@ Page({
    * 获取问卷
    */
   getQues: function() {
-    console.log('get new ques')
+    if (this.data.wxSearchData.onSearch) {
+      return 
+    }
     // 从数据库获取问卷
     const db = wx.cloud.database()
     //查找questionnaires集合条件为openid=用户的openid，并按qid进行降序排列，获取10个
@@ -74,12 +77,14 @@ Page({
   wxSearchFn: function(e) {
     var that = this
     WxSearch.wxSearchAddHisKey(that);
-
     this.setData({
-      searchLoadingHidden: false
+      searchLoadingHidden: false,
+      ques_transcript: this.data.questionnaires
     })
+    console.log(this.data)
     const db = wx.cloud.database()
     db.collection("questionnaires").where({
+      _openid: app.globalData.userInfo.openid,
       title: db.RegExp({
         regexp: this.data.wxSearchData.value, //从搜索栏中获取的value作为规则进行匹配。
         options: 'i', //大小写不区分
@@ -92,6 +97,7 @@ Page({
           questionnaires: res.data,
           ['wxSearchData.onSearch']: true
         })
+        app.globalData.quesList = this.data.questionnaires
       }
     })
 
@@ -101,9 +107,12 @@ Page({
    * 搜索后点击返回
    */
   getback: function() {
+    app.globalData.quesList = this.data.ques_transcript
     this.setData({
-      questionnaires: app.globalData.quesList,
-      ['wxSearchData.onSearch']: false
+      ['wxSearchData.onSearch']: false,
+      questionnaires: this.data.ques_transcript,
+      ['wxSearchData.value']: "",
+      inputShowed: false
     })
   },
 
@@ -117,7 +126,7 @@ Page({
   /**
    * 搜索栏得到焦点
    */
-  wxSerchFocus: function(e) {
+  wxSearchFocus: function(e) {
     var that = this
     WxSearch.wxSearchFocus(e, that);
   },
@@ -157,10 +166,56 @@ Page({
     WxSearch.wxSearchHiddenPancel(that);
   },
 
+ /**
+   * 显示输入框
+   */
+  showInput: function(e) {
+    this.setData({
+      inputShowed: true
+    })
+    // let query = wx.createSelectorQuery()
+    // let input_node = query.select('.weui-search-bar__input')
+    // console.log(input_node)
+    // input_node.focus()
+    this.wxSearchFocus(e)
+  },
+    /**
+   * 隐藏输入框
+   */
+  hideInput: function() {
+    this.setData({
+      inputVal: "",
+      inputShowed: false
+    });
+    var that = this
+    WxSearch.wxSearchHiddenPancel(that);
+  },
+
+  /**
+   * 清楚输入框
+   */
+  clearInput: function() {
+    console.log('clean')
+    this.setData({
+      ['wxSearchData.value']: ''
+    });
+  },
+
+  /**
+   * 输入双向绑定
+   */
+  inputTyping: function(e) {
+    this.setData({
+      inputVal: e.detail.value
+    });
+  },
+
+
   /**
    * 用户点击的问卷
    */
   onTapQues: function(e) {
+    console.log(e)
     const id = e.currentTarget.id
     //这里记录用户点击的问卷id等信息
     this.setData({
@@ -256,45 +311,6 @@ Page({
   },
 
   /**
-   * 显示输入框
-   */
-  showInput: function() {
-    this.setData({
-      inputShowed: true
-    });
-  },
-
-  /**
-   * 隐藏输入框
-   */
-  hideInput: function() {
-    this.setData({
-      inputVal: "",
-      inputShowed: false
-    });
-    var that = this
-    WxSearch.wxSearchHiddenPancel(that);
-  },
-
-  /**
-   * 清楚输入框
-   */
-  clearInput: function() {
-    this.setData({
-      ['wxSearchData.value']: ''
-    });
-  },
-
-  /**
-   * 输入双向绑定
-   */
-  inputTyping: function(e) {
-    this.setData({
-      inputVal: e.detail.value
-    });
-  },
-
-  /**
    * 点击加载更多
    */
   getMoreQues: function() {
@@ -327,7 +343,7 @@ Page({
    */
   share: function() {
     var ques = this.data.questionnaires
-    const id = this.data.id
+    let id = this.data.id
     // 如果 问卷没发布  出现弹窗
     if (ques[id].status == 0) {
       wx.showModal({

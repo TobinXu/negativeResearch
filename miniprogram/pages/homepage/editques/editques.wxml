@@ -9,17 +9,14 @@
 </view>
 
 <view class='ques-body'>
-  <view class='title' wx:for='{{ques.quesList}}' wx:for-index='qindex' wx:key='{{item.tid}}' bindtap='onChangetitle' data-index='{{qindex}}'>
-    <view class='padding'>
+  <view class='title' wx:for='{{ques.quesList}}' wx:for-index='qindex' wx:key='{{item.tid}}'>
+    <view class='padding' bindtap='onChangetitle' data-index='{{qindex}}'>
       <view class='title-head'>
         <text wx:if='{{item.necessity}}' style='color:red'>*</text>
         <text style='font-weight:900'>{{qindex + 1}}</text>.
         <text class='title-content'>{{item.ques}}：</text>
       </view>
       <view class='title-body'>
-        <view wx:if="{{item.typeId == 2 }}">
-          <view class='textarea'></view>
-        </view>
         <view class='answer' wx:for='{{item.options}}' wx:key='' wx:for-item='option'>
           <image class='circle'></image>
           {{option.content}}

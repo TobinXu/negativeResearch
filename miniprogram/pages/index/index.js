@@ -4,8 +4,6 @@ const app = getApp()
 
 Page({
   data: {
-    // userInfo: {},
-    // hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     showLoading: false,
   },
@@ -30,20 +28,17 @@ Page({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
-              // console.log(res)
-              // 可以将 res 发送给后台解码出 unionId
+              console.log(res)
               app.globalData.userInfo = res.userInfo
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
               if (app.userInfoReadyCallback) {
                 app.userInfoReadyCallback(res)
               }
               // 调用云函数登录获取openid,不需要复杂的鉴权机制
-              // console.log('login')
               wx.cloud.callFunction({
                 name: 'login',
                 success: res => {
                   app.globalData.userInfo['openid'] = res.result.openid
+                  console.log(res)
                   // console.log(app.globalData.userInfo)
                   // this.setData({
                     // userInfo: app.globalData.userInfo,
@@ -81,13 +76,6 @@ Page({
           app.globalData.userInfo['openid'] = res.result.openid
           console.log('userInfo用户的信息：', app.globalData.userInfo)
           //授权成功后,通过改变 hasUserInfo 的值，让实现页面显示出来，把授权页面隐藏起来
-          // this.setData({
-            // hasUserInfo: true,
-            // userInfo: e.detail.userInfo,
-          // });
-          // wx.switchTab({
-          //   url: '../homepage/homepage',
-          // })
 
           wx.redirectTo({
             url: '../homepage/homepage',

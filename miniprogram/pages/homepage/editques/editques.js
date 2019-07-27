@@ -15,17 +15,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
    onLoad: function (options) {
-    // console.log(options)
-    console.log('edit ques load')
     this.setData({
       ques: app.globalData.quesList[app.globalData.ques_index]
     })
   },
   onShow: function () {
-    console.log('show')
     this.setData({
      ques: app.globalData.quesList[app.globalData.ques_index]
    })
+    this.setData({
+      index: -1
+    })
   },
   /**
    * 点击出现编辑选项
@@ -63,10 +63,10 @@ Page({
    */
    editTitle: function () {
      this.setData({
-      index: -1
-    })
+       index: -1
+     })
      wx.navigateTo({
-      url: './editTitle/editTitle',
+      url: './editTitle/editTitle?index='+this.data.index,
     })
    },
 
@@ -74,9 +74,6 @@ Page({
    * 点击题目的编辑选项跳转至编辑页面
    */
    changetitle: function (e) {
-     this.setData({
-      index: -1
-    })
      wx.navigateTo({
       url: './edittitles/edittitles?index='+this.data.index
     })

@@ -59,7 +59,6 @@ Page({
         desc: this.data.ques.desc
       },
       success: res => {
-        console.log("问卷修改成功：",res)
         wx.navigateBack({
           url: '../editques',
         })

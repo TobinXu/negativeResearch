@@ -6,9 +6,9 @@
   <view class="weui-search-bar__form">
     <view class="weui-search-bar__box" hidden="{{!inputShowed}}">
       <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-      <input type="text" class="weui-search-bar__input" placeholder="请输入..." bindinput="wxSearchInput" value="{{wxSearchData.value}}" bindfocus="wxSerchFocus" />
-      <view class="weui-icon-clear" wx:if="{{wxSearchData.value.length > 0}}" bindtap="clearInput">
-        <icon type="clear" size="14"></icon>
+      <input type="text" class="weui-search-bar__input" placeholder="请输入..." value="{{wxSearchData.value}}"  bindinput="wxSearchInput" bindfocus="wxSearchFocus" />
+      <view class="weui-icon-clear" wx:if="{{wxSearchData.value.length > 0}}">
+        <icon type="clear" size="14" bindtap="clearInput"></icon>
       </view>
     </view>
     <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">

@@ -10,7 +10,11 @@ Page({
   },
 
   onLoad: function(options) {
-    this.setData({ ques: app.globalData.quesList[app.globalData.ques_index].quesList[options.index]})
+    console.log(options)
+    console.log(app.globalData)
+    this.setData({ 
+      ques: app.globalData.quesList[app.globalData.ques_index].quesList[options.index]
+      })
   },
   /**
    * 添加选项

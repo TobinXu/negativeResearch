@@ -11,7 +11,7 @@ Page({
   data: {
     ques: {}, //问卷
     titles: '', //问卷的题目相关信息
-    quesType: null, //（整数） 问卷类型  1为负问卷  0为传统问卷
+    quesType: 0, //（整数） 问卷类型  1为负问卷  0为传统问卷
     content: ['', '以下哪个不是您要选的——'], //问卷类型对应的开头内容
     loading: false,
     result: [], //保存的结果  二维字符串数组  选择题：数字代表第几个选项（单选多选都是这样）
@@ -37,14 +37,27 @@ Page({
     })
   },
 
+ changeType: function(e) {
+    if (e.currentTarget.dataset.id === '1') {
+      this.setData({
+        quesType: 1
+      })
+    } else this.setData({
+      quesType: 0
+    })
+  },
+  
   onShow: function() {
     let ques = this.data.ques.quesList
     for (let i = 0 ; i < ques.length; i++) {
       ques[i].np_result = invert_aglor(ques[i].nega_result.length, ques[i].nega_result, ques[i].nega_fill)
-      // ques[i].np_result = invert_aglor(3, [300, 170, 30], 500)
-
     }
     this.makeCharts()
+    // for(let i = 0; i < 4; i++) {
+    //   for (let j = 0; j < ques[i].np_result.length; j++) {
+    //     console.log(i+1 +'.', j+1 + '=',(ques[i].posi_result[j] - ques[i].np_result[j]) / ques[i].posi_result[j])
+    //   }
+    // }
   },
 
   /**
@@ -68,7 +81,7 @@ Page({
         let graph_data = []
         graph_height = ques[i].posi_result[i]
         for (let j = 0; j < ques[i].options.length; j++) {
-          let item = {}, posi = ques[i].posi_result[j], np = ques[i].np_result[j]
+          let item = {}, posi = ques[i].posi_result[j] || 0, np = ques[i].np_result[j] || 0
           item.name = this.data.name_list[j]
           item.data = [posi, np]
           let max = Math.max(posi, np)

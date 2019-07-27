@@ -8,7 +8,6 @@ Page({
     result: [],//保存的结果  二维字符串数组  选择题：数字代表第几个选项（单选多选都是这样）
   },
   onLoad: function (options) {
-    // console.log(options)
     // this.chooseType()
     let db = wx.cloud.database()
     let _this = this
@@ -16,7 +15,6 @@ Page({
       _id: options._id
     }).get({
       success: function (res) {
-        console.log(res.data[0])
         _this.setData({
           ques: res.data[0]
         })
@@ -60,7 +58,6 @@ setPosi: function() {
    * 选中某个单选题
    */
    onSelectedtitle: function (e) {
-    console.log(e)
     const index = e.currentTarget.dataset.index // 题目的id
     const aid = e.target.dataset.aid // 题目答案的id
     // 判断是否选择相同的选项
@@ -85,7 +82,6 @@ setPosi: function() {
     var arr = this.data.result
     const tid = e.currentTarget.id
     arr[tid] = [e.detail]
-    // console.log(arr)
     this.setData({
       result: arr
     })
@@ -133,7 +129,6 @@ setPosi: function() {
         // count: count
       },
       success: res => {
-        // console.log(res)
         wx.hideLoading()
         wx.showToast({
           title: '提交成功',

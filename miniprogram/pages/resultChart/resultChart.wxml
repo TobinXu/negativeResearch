@@ -1,4 +1,8 @@
 <view class='headTitle'>{{ques.title}}</view>
+<view class='top-button'>
+  <button bindtap="changeType" plain='true' class="{{quesType === 0?'active': ''}}" data-id='0'>传统问卷</button>
+  <button bindtap="changeType" plain='true' class="{{quesType === 1?'active': ''}}" data-id='1'>负问卷</button>
+</view>
 <view wx:for="{{ques.quesList}}" wx:key="{{item.tid}}" wx:for-index='qindex'>
   <view id='{{index}}' bindtap='onSelectedtitle'>
     <view class='padding'>
